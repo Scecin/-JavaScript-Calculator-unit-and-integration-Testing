@@ -117,6 +117,69 @@ describe('Calculator', () => {
     expect(runningTotal.textContent).toEqual('3')
   })
 
+  it('should diplay negative number', () => {
+    const button5 = container.getByTestId('number5')
+    const operator_subtract = container.getByTestId('operator-subtract')
+    const button7 = container.getByTestId('number7')
+    const operator_equals = container.getByTestId('operator-equals')
+    const runningTotal = container.getByTestId('running-total')
+
+    fireEvent.click(button5);
+    fireEvent.click(operator_subtract);
+    fireEvent.click(button7);
+    fireEvent.click(operator_equals);
+    
+    expect(runningTotal.textContent).toEqual('-2')
+  })
+
+  it('should display decilmals number', () => {
+    const button5 = container.getByTestId('number5')
+    const operator_divide = container.getByTestId('operator-divide')
+    const button2 = container.getByTestId('number2')
+    const operator_equals = container.getByTestId('operator-equals')
+    const runningTotal = container.getByTestId('running-total')
+
+    fireEvent.click(button5); 
+    fireEvent.click(operator_divide);
+    fireEvent.click(button2);
+    fireEvent.click(operator_equals);
+    
+    expect(runningTotal.textContent).toEqual('2.5')
+  })
+
+  it('should display a very large number', () => {
+    const button7 = container.getByTestId('number7')
+    const button5 = container.getByTestId('number5')
+    const button2 = container.getByTestId('number2')
+    const button3 = container.getByTestId('number3')
+    const button9 = container.getByTestId('number9')
+    const button8 = container.getByTestId('number8')
+    const operator_multiply = container.getByTestId('operator-multiply')
+    const operator_equals = container.getByTestId('operator-equals')
+    const runningTotal = container.getByTestId('running-total')
+
+
+    fireEvent.click(button7);
+    fireEvent.click(button5);
+    fireEvent.click(button2);
+    fireEvent.click(button3);
+    fireEvent.click(button9);
+    fireEvent.click(button8);
+
+    fireEvent.click(operator_multiply);
+
+    fireEvent.click(button7);
+    fireEvent.click(button5);
+    fireEvent.click(button2);
+    fireEvent.click(button3);
+    fireEvent.click(button9);
+    fireEvent.click(button8);
+
+    fireEvent.click(operator_equals);
+
+    expect(runningTotal.textContent).toEqual('566102750404')
+  })
+
   it('clear the running total', ()=> {
     const button3 = container.getByTestId('number3')
     const operator_multiply = container.getByTestId('operator-multiply')
@@ -130,6 +193,7 @@ describe('Calculator', () => {
     fireEvent.click(button5);
     fireEvent.click(operator_equals)
     fireEvent.click(clear)
+
     expect(runningTotal.textContent).toEqual('0')
   })
   
